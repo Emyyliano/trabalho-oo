@@ -16,14 +16,13 @@ class Rota {
         $this->distanciaKm = $distanciaKm;
     }
 
-    // Método para adicionar um objeto à lista (OO6)
     public function adicionarAluno(Aluno $aluno): void {
         $this->alunos[] = $aluno;
     }
 
-    // Método que calcula algo sobre a lista (OO6)
-    public function calcularMensalidadeTotal(float $valorPorAluno): float {
-        return count($this->alunos) * $valorPorAluno;
+    // Método alterado (OO6): Calcula o repasse/custo da prefeitura baseado no número de alunos
+    public function calcularCustoMensalPrefeitura(float $custoFixoPorAluno): float {
+        return count($this->alunos) * $custoFixoPorAluno;
     }
 
     public function getAlunos(): array {
@@ -34,7 +33,6 @@ class Rota {
         return $this->nome;
     }
 
-    // (OO7)
     public function paraArray(): array {
         $alunosArray = [];
         foreach ($this->alunos as $aluno) {
