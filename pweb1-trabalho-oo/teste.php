@@ -1,19 +1,38 @@
 <?php
+require_once __DIR__ . '/src/Aluno.php';
+require_once __DIR__ . '/src/Veiculo.php';
+require_once __DIR__ . '/src/Van.php';
+require_once __DIR__ . '/src/Onibus.php';
+require_once __DIR__ . '/src/Rota.php';
 
-declare(strict_types=1);
+echo "--- TESTES DO SISTEMA DE TRANSPORTE ESCOLAR ---\n\n";
 
-// =====================================================================
-// Roteiro de testes no terminal: php teste.php
-// Mostre cada regra funcionando e cada recusa. Cole a saída em docs/testes.md.
-// =====================================================================
+// 1. Testando a Regra de Negócio com try/catch (OO5)
+echo "Teste 1: Tentar criar um aluno com nome inválido\n";
+try {
+    $alunoInvalido = new Aluno("A", "2026001");
+    echo "ERRO: O sistema aceitou um nome com menos de 3 caracteres.\n";
+} catch (Exception $e) {
+    echo "OK, recusado: " . $e->getMessage() . "\n";
+}
 
-// require_once __DIR__ . '/src/MinhaClasse.php';
+// 2. Testando a Composição (OO6)
+echo "\nTeste 2: Adicionar alunos à Rota e calcular mensalidade\n";
+$rota = new Rota("Centro - Campus IFCE", 12.5);
+$rota->adicionarAluno(new Aluno("Maria Silva", "2026002"));
+$rota->adicionarAluno(new Aluno("João Pedro", "2026003"));
+echo "Total de alunos na rota: " . count($rota->getAlunos()) . "\n";
+echo "Total arrecadado (R$ 150/aluno): R$ " . $rota->calcularMensalidadeTotal(150.00) . "\n";
 
-echo "=== Teste 1: ... ===\n";
+// 3. Testando o Polimorfismo (OO3)
+echo "\nTeste 3: Polimorfismo no cálculo de manutenção (100km)\n";
+$frota = [
+    new Van("ABC-1234", 15, true),
+    new Onibus("XYZ-9876", 45, 3)
+];
 
-// try {
-//     ... uma operação que deve ser recusada ...
-//     echo "ERRO: a operação foi aceita\n";
-// } catch (Exception $e) {
-//     echo "OK, recusado: {$e->getMessage()}\n";
-// }
+// O mesmo método é chamado, mas cada classe filha responde da sua maneira
+foreach ($frota as $veiculo) {
+    $custo = $veiculo->calcularCustoManutencao(100.0);
+    echo "Veículo " . $veiculo->getPlaca() . " (" . get_class($veiculo) . "): R$ " . number_format($custo, 2, ',', '.') . "\n";
+}
