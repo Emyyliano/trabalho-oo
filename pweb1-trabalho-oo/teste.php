@@ -17,12 +17,13 @@ try {
 }
 
 // 2. Testando a Composição (OO6)
-echo "\nTeste 2: Adicionar alunos à Rota e calcular mensalidade\n";
-$rota = new Rota("Centro - Campus IFCE", 12.5);
+echo "\nTeste 2: Adicionar alunos à Rota e calcular custo da Prefeitura\n";
+$rota = new Rota("Centro - Campus IFCE Boa Viagem", 12.5);
 $rota->adicionarAluno(new Aluno("Maria Silva", "2026002"));
 $rota->adicionarAluno(new Aluno("João Pedro", "2026003"));
 echo "Total de alunos na rota: " . count($rota->getAlunos()) . "\n";
-echo "Total arrecadado (R$ 150/aluno): R$ " . $rota->calcularMensalidadeTotal(150.00) . "\n";
+// Exemplo: a prefeitura gasta R$ 85,00 por aluno para manter esta rota
+echo "Custo mensal para a prefeitura: R$ " . $rota->calcularCustoMensalPrefeitura(85.00) . "\n";
 
 // 3. Testando o Polimorfismo (OO3)
 echo "\nTeste 3: Polimorfismo no cálculo de manutenção (100km)\n";
