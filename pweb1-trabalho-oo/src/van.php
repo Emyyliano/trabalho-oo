@@ -5,9 +5,9 @@ require_once __DIR__ . '/Veiculo.php';
 class Van extends Veiculo {
     private bool $portaAutomatica;
 
-    public function __construct(string $placa, int $capacidade, bool $portaAutomatica) {
+    public function __construct(string $placa, int $capacidade, bool $acessivel, bool $portaAutomatica) {
         // Chamada ao construtor da classe mãe (OO2)
-        parent::__construct($placa, $capacidade);
+        parent::__construct($placa, $capacidade, $acessivel);
         $this->portaAutomatica = $portaAutomatica;
     }
 
