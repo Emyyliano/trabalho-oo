@@ -5,15 +5,15 @@ require_once __DIR__ . '/Veiculo.php';
 class Onibus extends Veiculo {
     private int $numeroEixos;
 
-    public function __construct(string $placa, int $capacidade, int $numeroEixos) {
-        parent::__construct($placa, $capacidade);
+    // Construtor atualizado para receber o $acessivel como 3º argumento
+    public function __construct(string $placa, int $capacidade, bool $acessivel, int $numeroEixos) {
+        parent::__construct($placa, $capacidade, $acessivel);
         $this->numeroEixos = $numeroEixos;
     }
 
-    // Sobrescrita do método respondendo de forma específica (OO2, OO3)
     public function calcularCustoManutencao(float $quilometros): float {
         $custoBase = parent::calcularCustoManutencao($quilometros);
-        return $custoBase * 1.5 + ($this->numeroEixos * 120.00); // Autocarro gasta mais e paga taxa por eixo
+        return $custoBase * 1.5 + ($this->numeroEixos * 120.00); 
     }
 
     public function paraArray(): array {
