@@ -5,35 +5,49 @@ require_once __DIR__ . '/src/Van.php';
 require_once __DIR__ . '/src/Onibus.php';
 require_once __DIR__ . '/src/Rota.php';
 
-echo "--- TESTES DO SISTEMA DE TRANSPORTE ESCOLAR ---\n\n";
+echo "--- TESTES DO SISTEMA SUTE ---\n\n";
 
-// 1. Testando a Regra de Negócio com try/catch (OO5)
-echo "Teste 1: Tentar criar um aluno com nome inválido\n";
+echo "Teste 1: Nome invalido (Regra OO5)\n";
 try {
-    $alunoInvalido = new Aluno("A", "2026001");
-    echo "ERRO: O sistema aceitou um nome com menos de 3 caracteres.\n";
+    $aluno1 = new Aluno("A", "12345");
 } catch (Exception $e) {
-    echo "OK, recusado: " . $e->getMessage() . "\n";
+    echo "OK, recusado: " . $e->getMessage() . "\n\n";
 }
 
-// 2. Testando a Composição (OO6)
-echo "\nTeste 2: Adicionar alunos à Rota e calcular custo da Prefeitura\n";
-$rota = new Rota("Centro - Campus IFCE Boa Viagem", 12.5);
-$rota->adicionarAluno(new Aluno("Maria Silva", "2026002"));
-$rota->adicionarAluno(new Aluno("João Pedro", "2026003"));
-echo "Total de alunos na rota: " . count($rota->getAlunos()) . "\n";
-// Exemplo: a prefeitura gasta R$ 85,00 por aluno para manter esta rota
-echo "Custo mensal para a prefeitura: R$ " . $rota->calcularCustoMensalPrefeitura(85.00) . "\n";
+echo "Teste: Nome com numeros (Regra OO5)\n";
+try {
+    $alunoErro = new Aluno("Maria2 Silva", "202603");
+} catch (Exception $e) {
+    echo "OK, recusado: " . $e->getMessage() . "\n\n";
+}
 
-// 3. Testando o Polimorfismo (OO3)
-echo "\nTeste 3: Polimorfismo no cálculo de manutenção (100km)\n";
+echo "Teste 2: Matricula com letras (Regra OO5)\n";
+try {
+    $aluno2 = new Aluno("Joao", "123A45");
+} catch (Exception $e) {
+    echo "OK, recusado: " . $e->getMessage() . "\n\n";
+}
+
+echo "Teste 3: Placa fora do padrao (Regra OO5)\n";
+try {
+    $vanErro = new Van("ABC-12345", 15, false);
+} catch (Exception $e) {
+    echo "OK, recusado: " . $e->getMessage() . "\n\n";
+}
+
+echo "Teste 4: Polimorfismo (Regra OO3)\n";
 $frota = [
-    new Van("ABC-1234", 15, true),
-    new Onibus("XYZ-9876", 45, 3)
+    new Van("ABC-1234", 15, false),
+    new Onibus("XYZ-9876", 45, true, 2)
 ];
-
-// O mesmo método é chamado, mas cada classe filha responde da sua maneira
 foreach ($frota as $veiculo) {
     $custo = $veiculo->calcularCustoManutencao(100.0);
-    echo "Veículo " . $veiculo->getPlaca() . " (" . get_class($veiculo) . "): R$ " . number_format($custo, 2, ',', '.') . "\n";
+    echo "Veiculo " . $veiculo->getPlaca() . " (" . get_class($veiculo) . "): R$ " . number_format($custo, 2, ',', '.') . "\n";
 }
+
+echo "\nTeste 5: Composicao (Regra OO6)\n";
+$rota = new Rota("Zona Rural - Centro", 12.5);
+$rota->adicionarAluno(new Aluno("Maria", "202601"));
+$rota->adicionarAluno(new Aluno("Pedro", "202602"));
+echo "Total de alunos na rota '" . $rota->getNome() . "': " . count($rota->getAlunos()) . "\n";
+echo "Custo mensal para a prefeitura: R$ " . number_format($rota->calcularCustoMensalPrefeitura(85.00), 2, ',', '.') . "\n";
