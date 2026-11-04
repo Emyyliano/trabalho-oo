@@ -1,0 +1,96 @@
+{
+    "rotas": [
+        {
+            "nome": "Centro - IFCE",
+            "distanciaKm": 6,
+            "totalAlunos": 5,
+            "alunos": [
+                {
+                    "nome": "Fulano",
+                    "matricula": "123456789"
+                },
+                {
+                    "nome": "Cicrano",
+                    "matricula": "987654321"
+                },
+                {
+                    "nome": "Beltrano",
+                    "matricula": "123456777"
+                },
+                {
+                    "nome": "fulanos",
+                    "matricula": "79137913"
+                },
+                {
+                    "nome": "Renato",
+                    "matricula": "79438642"
+                }
+            ],
+            "veiculo": {
+                "placa": "ABC0990",
+                "capacidade": 60,
+                "acessivel": false,
+                "tipo": "Van"
+            }
+        },
+        {
+            "nome": "Rotat\u00f3ria - IFCE",
+            "distanciaKm": 4,
+            "totalAlunos": 1,
+            "alunos": [
+                {
+                    "nome": "Emyliano",
+                    "matricula": "200000000000"
+                }
+            ],
+            "veiculo": {
+                "placa": "ABC0991",
+                "capacidade": 70,
+                "acessivel": true,
+                "tipo": "Onibus",
+                "numeroEixos": 2
+            }
+        }
+    ],
+    "frota": [
+        {
+            "placa": "ABC0990",
+            "capacidade": 60,
+            "acessivel": false,
+            "tipo": "Van"
+        },
+        {
+            "placa": "ABC0990",
+            "capacidade": 60,
+            "acessivel": false,
+            "tipo": "Van"
+        },
+        {
+            "placa": "ABC0991",
+            "capacidade": 70,
+            "acessivel": true,
+            "tipo": "Onibus",
+            "numeroEixos": 2
+        },
+        {
+            "placa": "ABC0991",
+            "capacidade": 15,
+            "acessivel": true,
+            "tipo": "Van"
+        },
+        {
+            "placa": "ABC0991",
+            "capacidade": 60,
+            "acessivel": true,
+            "tipo": "Onibus",
+            "numeroEixos": 2
+        },
+        {
+            "placa": "CDF9999",
+            "capacidade": 20,
+            "acessivel": false,
+            "tipo": "Onibus",
+            "numeroEixos": 2
+        }
+    ]
+}
