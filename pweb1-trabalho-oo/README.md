@@ -1,4 +1,4 @@
-# NOME DO SISTEMA
+# SUTE ( SISTEMA ÚNICO DE TRANSPORTE ESCOLAR )
 
 > Trabalho individual de Programação Web I (IFCE Campus Boa Viagem): sistema web orientado a objetos em PHP.
 
